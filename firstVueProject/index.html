@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>First VueJS Project</title>
+    <link rel="stylesheet" type="text/css" href="main.css" />
+  </head>
+  <body>
+    <div id="app" v-cloak>
+      <p>{{ fullName }}</p>
+       <!-- shorthand for: <p><a v-bind:href="url" target = "_blank">Google</a></p> -->
+      <p><a :href="url" target = "_blank">Google</a></p>
+
+      <p>{{ age }}</p>
+      <hr />
+
+      <!-- v-model directive -->
+      <!-- first name and last name will be updated simultaneously as they are typed in (reactivity) -->
+      <label>First Name: </label>
+      <!-- .trim removes extra white spaces -->
+      <!-- .lazy reduces number of updates by delaying the change until the user moves away from input -->
+      <input type="text" v-model.lazy.trim="firstName">
+
+      <!-- keyboard modifier -->
+      <!-- modifications to middle name will only be reflected once enter key is pressed -->
+      <label>Middle Name: </label>
+      <input type="text" @keyup.enter="updateMiddleName">
+
+      <!-- data binding/listening to events -->
+      <label>Last Name: </label>
+      <!-- <input type="text" :value="lastName" @input="updateLastName('last name event triggered!', $event)"> -->
+      <!-- use event modifier to prevent unwanted default browser behaviours -->
+      <input type="text" :value="lastName" @input.prevent="updateLastName('last name event triggered!', $event)">
+
+      <!-- allow user to modify age through direct input -->
+      <label>Age: </label>
+      <input type="number" v-model.number="age">
+
+
+      <!-- increment or decrement age -->
+      <!-- <button type="button" v-on:click="increment"> Increment </button> -->
+      <button type="button" @click="increment"> Increment </button>
+      <!-- <button type="button" @click="age--"> Decrement </button> -->
+      <button type="button" @click="decrement"> Decrement </button>
+      <!-- system modifier -->
+      <!-- decrementation will only be reflected when decrement button is pressed with ctrl key -->
+      <!-- <button type="button" @click.ctrl="decrement"> Decrement </button> -->
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
