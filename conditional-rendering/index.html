@@ -1,0 +1,39 @@
+<!DOCTYPE>
+<html>
+
+<head>
+  <title>VueJS Course</title>
+  <link rel="stylesheet" type="text/css" href="main.css" />
+</head>
+
+<body>
+  <div id="app">
+    <!-- conditional rendering -->
+    <!-- removes the element depending on condition -->
+    <p v-if="mode == 1"> Showing v-if directive content</p>
+    <!-- template: CSS strucure will not be changed if adding bonus content -->
+    <!-- using v-else-if and v-else without v-if will cause error -->
+    <template v-else-if="mode == 2">
+      <p>Bonus content</p>
+      <!-- v-else-if style can be different -->
+      <h3>v-else-if</h3>
+    </template>
+    <p v-else>v-else</p>
+
+    <!-- v-show directive -->
+    <!-- does not remove the element depending on condition -->
+    <i v-show="mode == 1">v-show</i>
+
+    <!-- select content to display-->
+    <select v-model="mode">
+      <option value="1">v-if</option>
+      <option value="2">v-else-if</option>
+      <option value="3">v-else</option>
+    </select>
+  </div>
+
+  <script src="https://unpkg.com/vue@next"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>
